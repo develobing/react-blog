@@ -1,5 +1,6 @@
 import app from './app.js';
+import { PORT } from './config/index.js';
 
-app.listen('3000', () => {
-  console.log('3000 Port Connected!');
+app.listen(PORT, () => {
+  console.log(`${PORT} Port Connected!`);
 });
