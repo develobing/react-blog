@@ -17,7 +17,7 @@ const auth = (req, res, next) => {
     next();
   } catch (err) {
     console.log('err', err);
-    res.status(400).json({ msg: '토믄이 유효하지 않습니다.' });
+    res.status(400).json({ msg: '토큰이 유효하지 않습니다.' });
   }
 };
 

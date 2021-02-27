@@ -9,7 +9,6 @@ import {
   NavbarToggler,
   Collapse,
   Form,
-  FormGroup,
   Button,
 } from 'reactstrap';
 import { LOGOUT_REQUEST } from '../redux/types';
@@ -23,8 +22,10 @@ const AppNavBar = () => {
   );
   const dispatch = useDispatch();
   const onLogout = useCallback(() => {
-    dispatch({ type: LOGOUT_REQUEST });
-  }, []);
+    dispatch({
+      type: LOGOUT_REQUEST,
+    });
+  }, [dispatch]);
 
   useEffect(() => {
     setIsOpen(false);
@@ -41,13 +42,15 @@ const AppNavBar = () => {
   const AuthLink = (
     <Fragment>
       <NavItem>
-        {userRole === 'admin' ? (
+        {userRole === 'Admin' ? (
           <Form className="col mt-2">
             <Link
-              to="posts"
+              to="/posts"
               className="btn btn-success block px-3 text-white"
               onClick={addPostClick}
-            ></Link>
+            >
+              Add Post
+            </Link>
           </Form>
         ) : (
           ''
@@ -57,7 +60,7 @@ const AppNavBar = () => {
       <NavItem className="d-flex justify-content-center">
         <Form className="col mt-2">
           {user && user.name ? (
-            <Link>
+            <Link to="/">
               <Button outline color="light" className="px-3" block>
                 <strong>{user ? `Welcome ${user.name}` : ''}</strong>
               </Button>

@@ -65,7 +65,7 @@ router.get('/user', auth, async (req, res) => {
     res.json(user);
   } catch (err) {
     console.log('err', err);
-    res.status(400).json({ msg: err.message });
+    res.status(500).json({ msg: err.message });
   }
 });
 

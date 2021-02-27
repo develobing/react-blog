@@ -1,7 +1,5 @@
 import express from 'express';
-import bcrypt from 'bcryptjs';
 import User from '../../models/User.js';
-import { JWT_SECRET } from '../../config/index.js';
 
 const router = express.Router();
 
@@ -18,7 +16,7 @@ router.get('/', async (req, res) => {
     res.status(200).json(users);
   } catch (err) {
     console.log('err', err);
-    res.status(400).json({ msg: e.message });
+    res.status(500).json({ msg: err.message });
   }
 });
 
@@ -40,18 +38,23 @@ router.post('/', async (req, res) => {
   let user = await User.findOne({ email });
   if (user) return res.status(400).json({ msg: '이미 가입된 유저입니다.' });
 
-  let newUser = await User.create({ name, email, password });
-  let token = newUser.getSignedJwtToken();
+  try {
+    let newUser = await User.create({ name, email, password });
+    let token = newUser.getSignedJwtToken();
 
-  res.json({
-    token,
-    user: {
-      id: newUser.id,
-      name: newUser.name,
-      email: newUser.email,
-      role: user.role,
-    },
-  });
+    res.json({
+      token,
+      user: {
+        id: newUser.id,
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role,
+      },
+    });
+  } catch (err) {
+    console.log('err', err);
+    if (user) return res.status(500).json({ msg: err.message });
+  }
 });
 
 export default router;
