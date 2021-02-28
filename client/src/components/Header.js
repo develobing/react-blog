@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap';
 
 const Header = () => {
   return (
-    <div id="page-header" className="mb-3">
+    <div id="page-header">
       <Row>
         <Col md="6" sm="auto" className="text-center m-auto">
           <h1>Read My Blog</h1>

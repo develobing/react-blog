@@ -14,7 +14,7 @@ const MyRoute = () => (
   <Fragment>
     <AppNavBar />
     <Header />
-    <Container id="">
+    <Container id="main-body">
       <Switch>
         <Route path="/" component={PostCardList} exact />
         <Route path="/posts" component={PostWrite} exact />
