@@ -9,7 +9,7 @@ import {
 
 // Load All Post
 const loadPostApi = () => {
-  return axios.get('/api/post');
+  return axios.get('/api/posts');
 };
 
 function* loadPosts() {
