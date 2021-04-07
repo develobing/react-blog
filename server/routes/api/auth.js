@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
 });
 
 /**
- * @routes  POST
+ * @routes  POST /api/logout
  * @desc    Logout
  * @access  Public
  * @author  Robin
@@ -53,7 +53,7 @@ router.post('/logout', (req, res) => {
 });
 
 /**
- * @routes  GET
+ * @routes  GET /api/user
  * @desc    GET user info
  * @access  Private
  * @author  Robin
