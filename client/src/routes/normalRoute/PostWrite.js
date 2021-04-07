@@ -9,14 +9,11 @@ import {
   Col,
   Progress,
 } from 'reactstrap';
-// import CKEditor from '@ckeditor/ckeditor5-react';
-// import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 // import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
 // import { editorConfiguration } from '../../components/editor/EditorConfig';
+// import MyInit from '../../components/editor/UploadAdapter';
 import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
-import MyInit from '../../components/editor/UploadAdapter';
 
 const PostWrite = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -74,7 +71,7 @@ const PostWrite = () => {
               editor={DecoupledEditor}
               config={editorConfiguration}
               onReady={MyInit}
-              onblur={getDataFromCKEditor}
+              onBlur={getDataFromCKEditor}
             ></CKEditor> */}
 
             <CKEditor
@@ -96,12 +93,13 @@ const PostWrite = () => {
                 // The `onReady` callback will be called again and the new toolbar will be added.
                 // This is why you need to remove the older toolbar.
                 if (willEditorRestart) {
-                  this.editor.ui.view.toolbar.element.remove();
+                  // this.editor.ui.view.toolbar.element.remove();
                 }
               }}
               onChange={(event, editor) => console.log({ event, editor })}
               editor={DecoupledEditor}
               data="<p>Hello from CKEditor 5's decoupled editor!</p>"
+              onBlur={getDataFromCKEditor}
               // config={/* the editor configuration */}
             />
 
